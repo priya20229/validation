@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <style>
+    *{
+      font-size: large;
+    }
+    h1{font-size: larger;}
+    body { font-family: Arial; padding: 20px; 
+    margin-left: 50px;} 
+    .error { color: red;}
+    input { margin-bottom: 10px; display: block; 
+    font-size: medium;}
+    form{
+      border-color:black;
+      border-style: double;
+      padding:20px;
+      border-radius: 5px;
+      border-width: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h2><u>Registration Form:</u></h2>
+
+<form id="registrationForm" onsubmit="return validateForm()">
+  <label>Name:</label>
+  <input type="text" id="name" >
+
+  <label>Email:</label>
+  <input type="email" id="email" >
+
+  <label>Phone number:</label>
+  <input type="number" id="phonenumber">
+
+  <label>College/University name:</label>
+  <input type="text" id="clgname">
+
+  <label>Password:</label>
+  <input type="password" id="password" >
+  
+  <label>Confirm Password:</label>
+  <input type="password" id="confirmPassword" >
+
+  <label>Choose your degree:</label>
+  <select id="degree">
+    <option>B.sc</option>
+    <option>B.tech</option>
+    <option>B.E</option>
+    <option>M.sc</option>
+  </select><br><br>
+
+  <label>Choose your year:</label>
+  <select id="year">
+    <option>1st year</option>
+    <option>2nd year</option>
+    <option>3rd year</option>
+    <option>4th year</option>
+  </select><br><br>
+
+   <label>select your major subject</label>
+  <select id="subject">
+    <option>Tamil</option>
+    <option>English</option>
+    <option>Mathematics</option>
+    <option>Botany</option>
+    <option>Zoology</option>
+    <option>Computerscience</option>
+    <option>Physics</option>
+    <option>Chemistry</option>
+    <option>IT</option>
+  </select><br>
+  
+  <span id="errorMsg" class="error"></span><br>
+
+  <button type="submit">Register</button>
+</form>
+
+<script>
+function validateForm() {
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var phonenumber=document.getElementById("phonenumber").value;
+  var school=document.getElementById("clgname").value;
+  var degree=document.getElementById("degree").value;
+  var password = document.getElementById("password").value;
+  var confirmPassword = document.getElementById("confirmPassword").value;
+  var errorMsg = document.getElementById("errorMsg");
+
+  errorMsg.innerText = "";
+  if (name === "") {
+    errorMsg.innerText = "Name is required.";
+    return false;
+  }
+
+  if (email === ""||!/^\S+@\S+\.\S+$/.test(email)) {
+    errorMsg.innerText = "Please enter a valid email.";
+    return false;
+  }
+  if(phonenumber===""){
+    errorMsg.innerText="phone number is required.";
+    return false;
+  }
+  if(school===""){
+    errorMsg.innerText="Enter your university name";
+    return false;
+  }
+  if (degree===""){
+    errorMsg.innerText="please choose your degree";
+    return false;
+  }
+  if(year==="")
+  {
+    errorMsg.innerText="choose your current year";
+    return false;
+  }
+  if(subject===""){
+    errorMsg.innerText="choose your major subject";
+    return false;
+  }
+
+  if (password.length < 6) {
+    errorMsg.innerText = "Password must be at least 6 characters.";
+    return false;
+  }
+
+  if (password !== confirmPassword) {
+    errorMsg.innerText = "Passwords do not match.";
+    return false;
+  }
+
+  alert("Registration successful!");
+  return true;
+}
+</script>
+
+</body>
+</html>
